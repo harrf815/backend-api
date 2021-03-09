@@ -4,4 +4,15 @@ class RecipesController < ApplicationController
         recipes = Recipe.all
         render json: recipes
     end
+
+    def create 
+        recipe = Recipe.create(recipe_params)
+        render json: recipe 
+    end
+
+    private 
+
+    def recipe_params
+        params.require(:recipe).permit(:ingredients, :dish_id)
+    end
 end
